@@ -6,11 +6,11 @@ using Amazon.Lambda.APIGatewayEvents;
 
 namespace TestServerlessApp
 {
-    public class Greeter_SayHello_Generated
+    public class Foobar
     {
         private readonly Greeter greeter;
 
-        public Greeter_SayHello_Generated()
+        public Foobar()
         {
             greeter = new Greeter();
         }
@@ -24,9 +24,12 @@ namespace TestServerlessApp
                 {
                     firstNames = request.MultiValueQueryStringParameters["names"].Select(q => (string) Convert.ChangeType(q, typeof(string))).ToList();
                 }
-                catch ()
+                catch (Exception e) when (e is InvalidCastException || e is FormatException || e is OverflowException || e is ArgumentException)
                 {
-
+                    return new APIGatewayProxyResponse
+                    {
+                        StatusCode = 400
+                    };
                 }
             }
 

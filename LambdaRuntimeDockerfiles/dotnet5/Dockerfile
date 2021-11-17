@@ -90,7 +90,11 @@ ENV \
 COPY --from=publish /app/publish /var/runtime
 
 COPY --from=publish /app/publish/lambda-entrypoint.sh /
-RUN rm -f /var/runtime/lambda-entrypoint.sh && \ 
+RUN rm -f /var/runtime/lambda-entrypoint.sh && \
     chmod +x /lambda-entrypoint.sh
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
 
 ENTRYPOINT ["/lambda-entrypoint.sh"]

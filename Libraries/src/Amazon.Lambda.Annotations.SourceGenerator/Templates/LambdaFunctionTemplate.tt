@@ -167,7 +167,17 @@ namespace <#= _model.LambdaMethod.ContainingNamespace #>
 #>
             if (request.<#= queryStringParameters #>?.ContainsKey("<#= parameterKey #>") == true)
             {
-                <#= parameter.Name #> = request.<#= queryStringParameters #>["<#= parameterKey #>"]<#= commaSplit #><#= select #>;
+                try
+                {
+                    <#= parameter.Name #> = request.<#= queryStringParameters #>["<#= parameterKey #>"]<#= commaSplit #><#= select #>;
+                }
+                catch (Exception e) when (e is InvalidCastException || e is FormatException || e is OverflowException || e is ArgumentException)
+                {
+                    return new <#= _model.GeneratedMethod.ReturnType.Name #>
+                    {
+                        StatusCode = 400
+                    };
+                }
             }
 
 <#
@@ -178,7 +188,17 @@ namespace <#= _model.LambdaMethod.ContainingNamespace #>
 #>
             if (request.<#= queryStringParameters #>?.ContainsKey("<#= parameterKey #>") == true)
             {
-                <#= parameter.Name #> = (<#= parameter.Type.FullName #>)Convert.ChangeType(request.<#= queryStringParameters #>["<#= parameterKey #>"], typeof(<#= parameter.Type.FullName #>));
+                try
+                {
+                    <#= parameter.Name #> = (<#= parameter.Type.FullName #>)Convert.ChangeType(request.<#= queryStringParameters #>["<#= parameterKey #>"], typeof(<#= parameter.Type.FullName #>));
+                }
+                catch (Exception e) when (e is InvalidCastException || e is FormatException || e is OverflowException || e is ArgumentException)
+                {
+                    return new <#= _model.GeneratedMethod.ReturnType.Name #>
+                    {
+                        StatusCode = 400
+                    };
+                }
             }
 
 <#
@@ -230,7 +250,17 @@ namespace <#= _model.LambdaMethod.ContainingNamespace #>
 #>
             if (request.<#= headers #>?.ContainsKey("<#= headerKey #>") == true)
             {
-                <#= parameter.Name #> = request.<#= headers #>["<#= headerKey #>"]<#= commaSplit #><#= select #>;
+                try
+                {
+                    <#= parameter.Name #> = request.<#= headers #>["<#= headerKey #>"]<#= commaSplit #><#= select #>;
+                }
+                catch (Exception e) when (e is InvalidCastException || e is FormatException || e is OverflowException || e is ArgumentException)
+                {
+                    return new <#= _model.GeneratedMethod.ReturnType.Name #>
+                    {
+                        StatusCode = 400
+                    };
+                }
             }
 
 <#
@@ -241,7 +271,17 @@ namespace <#= _model.LambdaMethod.ContainingNamespace #>
 #>
             if (request.<#= headers #>?.ContainsKey("<#= headerKey #>") == true)
             {
-                <#= parameter.Name #> = (<#= parameter.Type.FullName #>)Convert.ChangeType(request.<#= headers #>["<#= headerKey #>"], typeof(<#= parameter.Type.FullName #>));
+                try
+                {
+                    <#= parameter.Name #> = (<#= parameter.Type.FullName #>)Convert.ChangeType(request.<#= headers #>["<#= headerKey #>"], typeof(<#= parameter.Type.FullName #>));
+                }
+                catch (Exception e) when (e is InvalidCastException || e is FormatException || e is OverflowException || e is ArgumentException)
+                {
+                    return new <#= _model.GeneratedMethod.ReturnType.Name #>
+                    {
+                        StatusCode = 400
+                    };
+                }
             }
 
 <#
@@ -275,7 +315,17 @@ namespace <#= _model.LambdaMethod.ContainingNamespace #>
             var <#= parameter.Name #> = default(<#= parameter.Type.FullName #>);
             if (request.PathParameters?.ContainsKey("<#= routeKey #>") == true)
             {
-                <#= parameter.Name #> = (<#= parameter.Type.FullName #>)Convert.ChangeType(request.PathParameters["<#= routeKey #>"], typeof(<#= parameter.Type.FullName #>));
+                try
+                {
+                    <#= parameter.Name #> = (<#= parameter.Type.FullName #>)Convert.ChangeType(request.PathParameters["<#= routeKey #>"], typeof(<#= parameter.Type.FullName #>));
+                }
+                catch (Exception e) when (e is InvalidCastException || e is FormatException || e is OverflowException || e is ArgumentException)
+                {
+                    return new <#= _model.GeneratedMethod.ReturnType.Name #>
+                    {
+                        StatusCode = 400
+                    };
+                }
             }
 
 <#
