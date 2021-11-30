@@ -12,13 +12,14 @@
       },
       "Properties": {
         "Runtime": "dotnetcore3.1",
-        "CodeUri": "",
+        "CodeUri": ".",
         "MemorySize": 1024,
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
         ],
         "Handler": "TestServerlessApp::TestServerlessApp.Greeter_SayHello_Generated::SayHello",
+        "PackageType": "Zip",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
@@ -41,13 +42,14 @@
       },
       "Properties": {
         "Runtime": "dotnetcore3.1",
-        "CodeUri": "",
+        "CodeUri": ".",
         "MemorySize": 256,
         "Timeout": 50,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
         ],
         "Handler": "TestServerlessApp::TestServerlessApp.Greeter_SayHelloAsync_Generated::SayHelloAsync",
+        "PackageType": "Zip",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",

@@ -12,13 +12,14 @@
       },
       "Properties": {
         "Runtime": "dotnetcore3.1",
-        "CodeUri": "",
+        "CodeUri": ".",
         "MemorySize": 256,
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
         ],
         "Handler": "TestServerlessApp::TestServerlessApp.ComplexCalculator_Add_Generated::Add",
+        "PackageType": "Zip",
         "Events": {
           "RootPost": {
             "Type": "HttpApi",
@@ -41,13 +42,14 @@
       },
       "Properties": {
         "Runtime": "dotnetcore3.1",
-        "CodeUri": "",
+        "CodeUri": ".",
         "MemorySize": 256,
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
         ],
         "Handler": "TestServerlessApp::TestServerlessApp.ComplexCalculator_Subtract_Generated::Subtract",
+        "PackageType": "Zip",
         "Events": {
           "RootPost": {
             "Type": "HttpApi",
